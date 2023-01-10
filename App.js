@@ -1,7 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import { useEffect, useState } from 'react';
 
 export default function App() {
+  const [beers, setBeers] = useState([])
+  console.log(beers)
+
+  useEffect(() => {
+    fetch('https://api.punkapi.com/v2/beers/random')
+    .then(r => r.json())
+    .then(data => setBeers(data))
+  }, [])
   return (
     <View style={styles.container}>
       <Text>Open up App.js to start working on your app!</Text>
