@@ -16,7 +16,7 @@ export default function App() {
   const rando = beers.map((beer) => {
     return (
       <Pressable
-        style={{ textAlign: "center", textAlign: 'center', width: "80%"}}
+        style={{ textAlign: "center", textAlign: "center", width: "80%" }}
         key={beer.id}
         onPress={() => setBeers([])}
       >
@@ -38,7 +38,24 @@ export default function App() {
   return (
     <View style={styles.container}>
       {beers.length ? (
-        rando
+        <View style={styles.descriptionContainer}>
+          <FlatList
+            
+            data={beers}
+            renderItem={({ item }) => (
+              <Pressable
+                onPress={() => setBeers([])}
+                style={{
+                  textAlign: "center",
+                  width: "80%",
+                }}
+              >
+                <Text>{item.name}</Text>
+                <Text>{item.description}</Text>
+              </Pressable>
+            )}
+          />
+        </View>
       ) : (
         <View style={styles.buttonContainer}>
           <Pressable style={styles.beerButton} onPress={() => getRandomBeer()}>
@@ -72,5 +89,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+  },
+  descriptionContainer: {
+    marginTop: 100
   },
 });
