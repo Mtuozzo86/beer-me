@@ -6,7 +6,7 @@ import {
   ActivityIndicator,
   Pressable,
   Animated,
-  FlatList
+  FlatList,
 } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { useEffect, useState } from "react";
@@ -15,17 +15,15 @@ import "./styles.css";
 
 export default function App() {
   const [beers, setBeers] = useState([]);
-  console.log(beers);
   const rando = beers.map((beer) => {
     return (
-      <View key={beer.id}>
-        <Text>{beer.name}</Text>
-        <Text>{beer.id}</Text>
-        <Text>{beer.description}</Text>
-      </View>
+      <Pressable style={{ textAlign: "center", width: "80%" }} key={beer.id} onPress={() => setBeers([])}>
+        <Text style={{fontWeight: 900, fontSize: 38}}>{beer.name}</Text>
+        <Text>ABV: {beer.id}</Text>
+        <Text style={{fontStyle: 'italic', marginTop: 16}}>{beer.description}</Text>
+      </Pressable>
     );
   });
-  console.log(rando);
 
   function getRandomBeer() {
     fetch("https://api.punkapi.com/v2/beers/random")
@@ -35,12 +33,18 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.buttonContainer}>
-        <Pressable style={styles.beerButton} onPress={() => getRandomBeer()}>
-          <Ionicons name="beer" size={70} color="#0b0a07" />
-        </Pressable>
-      </View>
-      <View>{rando}</View>
+      {beers.length ? (
+        rando
+        
+      ) : (
+        
+        <View style={styles.buttonContainer}>
+          <Pressable style={styles.beerButton} onPress={() => getRandomBeer()}>
+            <Ionicons name="beer" size={70} color="#0b0a07" />
+          </Pressable>
+        </View>
+      )}
+
       <StatusBar style="auto" />
     </View>
   );
