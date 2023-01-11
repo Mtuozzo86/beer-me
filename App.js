@@ -9,18 +9,22 @@ import {
   FlatList,
 } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import { useEffect, useState } from "react";
-import "./styles.css";
-<ion-icon name="beer-outline"></ion-icon>;
+import { useState } from "react";
 
 export default function App() {
   const [beers, setBeers] = useState([]);
   const rando = beers.map((beer) => {
     return (
-      <Pressable style={{ textAlign: "center", width: "80%" }} key={beer.id} onPress={() => setBeers([])}>
-        <Text style={{fontWeight: 900, fontSize: 38}}>{beer.name}</Text>
+      <Pressable
+        style={{ textAlign: "center", textAlign: 'center', width: "80%"}}
+        key={beer.id}
+        onPress={() => setBeers([])}
+      >
+        <Text style={{ fontWeight: 900, fontSize: 38 }}>{beer.name}</Text>
         <Text>ABV: {beer.id}</Text>
-        <Text style={{fontStyle: 'italic', marginTop: 16}}>{beer.description}</Text>
+        <Text style={{ fontStyle: "italic", marginTop: 16 }}>
+          {beer.description}
+        </Text>
       </Pressable>
     );
   });
@@ -35,9 +39,7 @@ export default function App() {
     <View style={styles.container}>
       {beers.length ? (
         rando
-        
       ) : (
-        
         <View style={styles.buttonContainer}>
           <Pressable style={styles.beerButton} onPress={() => getRandomBeer()}>
             <Ionicons name="beer" size={70} color="#0b0a07" />
