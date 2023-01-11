@@ -2,6 +2,7 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, Pressable, FlatList } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { useState } from "react";
+import Navbar from "./Navbar";
 
 export default function App() {
   const [beers, setBeers] = useState([]);
@@ -14,31 +15,38 @@ export default function App() {
 
   function renderStuff({ item }) {
     return (
-      <View style={styles.descriptionContainer}>
-        <Pressable style={styles.description} onPress={() => setBeers([])}>
-          <Text style={{ fontSize: 38 }}>{item.name}</Text>
-          <Text style={{ fontStyle: "italic", marginTop: 16 }}>
-            {item.description}
-          </Text>
-        </Pressable>
-      </View>
+      <Pressable style={styles.description} onPress={() => setBeers([])}>
+        <Text style={{ fontSize: 38 }}>{item.name}</Text>
+        <Text>ABV: {item.abv}</Text>
+        <Text style={{ fontStyle: "italic", marginTop: 16 }}>
+          {item.description}
+        </Text>
+      </Pressable>
     );
   }
 
   return (
-    <View style={styles.container}>
-      {beers.length ? (
-        <FlatList data={beers} renderItem={renderStuff} />
-      ) : (
-        <View style={styles.buttonContainer}>
-          <Pressable style={styles.beerButton} onPress={() => getRandomBeer()}>
-            <Ionicons name="beer" size={70} color="#0b0a07" />
-          </Pressable>
-        </View>
-      )}
+    
+      <View style={styles.container}>
+      <Navbar />
+        {beers.length ? (
+          <View style={styles.descriptionContainer}>
+            <FlatList data={beers} renderItem={renderStuff} />
+          </View>
+        ) : (
+          <View style={styles.buttonContainer}>
+            <Pressable
+              style={styles.beerButton}
+              onPress={() => getRandomBeer()}
+            >
+              <Ionicons name="beer" size={70} color="#0b0a07" />
+            </Pressable>
+          </View>
+        )}
 
-      <StatusBar style="auto" />
-    </View>
+        <StatusBar style="auto" />
+      </View>
+    
   );
 }
 
@@ -63,7 +71,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   descriptionContainer: {
-    borderWidth: 5,
+    borderWidth: 1,
+    width: 300,
+    padding: 10,
   },
   description: {},
 });
