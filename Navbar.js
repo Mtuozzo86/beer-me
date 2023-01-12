@@ -1,11 +1,12 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useState } from "react";
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
+import ModalMenu from "./ModalMenu";
 
 export default function Navbar() {
-  const [showModal, setShowModal] = useState(false)
+  const [showModal, setShowModal] = useState(false);
   const [fontsLoaded] = useFonts({
     "Rowdies-Bold": require("./assets/fonts/Rowdies-Bold.ttf"),
   });
@@ -17,14 +18,17 @@ export default function Navbar() {
   if (!fontsLoaded) {
     return null;
   }
+  function onCloseModal(params) {
+    console.log(params)
+  }
   return (
     <View style={styles.container} onLayout={onLayoutRootView}>
       <Pressable onPress={() => setShowModal(!showModal)}>
         <Ionicons name="menu-outline" size={24} />
       </Pressable>
-
       <Text style={styles.appName}>Beer me!</Text>
       <Ionicons name="search-outline" size={24} />
+      {showModal && <ModalMenu showModal={showModal} onCloseModal={onCloseModal}/> }
     </View>
   );
 }
