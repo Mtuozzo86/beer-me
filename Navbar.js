@@ -5,8 +5,7 @@ import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import ModalMenu from "./ModalMenu";
 
-export default function Navbar() {
-  const [showModal, setShowModal] = useState(false);
+export default function Navbar({ onSetShowModal }) {
   const [fontsLoaded] = useFonts({
     "Rowdies-Bold": require("./assets/fonts/Rowdies-Bold.ttf"),
   });
@@ -18,17 +17,18 @@ export default function Navbar() {
   if (!fontsLoaded) {
     return null;
   }
-  function onCloseModal(params) {
-    console.log(params)
-  }
+
   return (
     <View style={styles.container} onLayout={onLayoutRootView}>
-      <Pressable onPress={() => setShowModal(!showModal)}>
+      <Pressable
+        onPress={() => {
+          onSetShowModal(true);
+        }}
+      >
         <Ionicons name="menu-outline" size={24} />
       </Pressable>
       <Text style={styles.appName}>Beer me!</Text>
       <Ionicons name="search-outline" size={24} />
-      {showModal && <ModalMenu showModal={showModal} onCloseModal={onCloseModal}/> }
     </View>
   );
 }
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-around",
+    justifyContent: "space-between",
     width: "100%",
     height: 70,
     padding: 5,
