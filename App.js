@@ -55,24 +55,26 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#f0ec57",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "flex-start",
   },
   buttonContainer: {
+    flex:1,
+    justifyContent: 'center'
+
+  },
+  beerButton: {
+    justifyContent: "center",
+    alignItems: "center",
     width: 120,
     height: 120,
     borderWidth: 5,
     borderColor: "#0b0a07",
     borderRadius: 100,
-    padding: 3,
-  },
-  beerButton: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
   },
   descriptionContainer: {
+    flex: 1,
     borderWidth: 1,
-    width: 300,
+    // width: 300,
     padding: 10,
   },
   description: {},
