@@ -23,13 +23,13 @@ export default function RandomBeer() {
   }
 
   return (
-    <View>
+    <View style={styles.buttonContainer}>
       {beers.length ? (
         <View style={styles.descriptionContainer}>
           <FlatList data={beers} renderItem={renderStuff} />
         </View>
       ) : (
-        <View style={styles.buttonContainer}>
+        <View >
           <Pressable style={styles.beerButton} onPress={() => getRandomBeer()}>
             <Ionicons name="beer" size={70} color="#0b0a07" />
           </Pressable>
@@ -61,7 +61,6 @@ const styles = StyleSheet.create({
   },
   descriptionContainer: {
     flex: 1,
-    borderWidth: 1,
     // width: 300,
     padding: 10,
   },
