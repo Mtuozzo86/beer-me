@@ -1,10 +1,11 @@
-import { useCallback } from 'react';
-import { View, Text, StyleSheet } from "react-native";
+import { useCallback, useState } from 'react';
+import { View, Text, StyleSheet, Pressable } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 
 export default function Navbar() {
+  const [showModal, setShowModal] = useState(false)
   const [fontsLoaded] = useFonts({
     "Rowdies-Bold": require("./assets/fonts/Rowdies-Bold.ttf"),
   });
@@ -17,8 +18,11 @@ export default function Navbar() {
     return null;
   }
   return (
-    <View style={styles.container}  onLayout={onLayoutRootView}>
-      <Ionicons name="menu-outline" size={24} />
+    <View style={styles.container} onLayout={onLayoutRootView}>
+      <Pressable onPress={() => setShowModal(!showModal)}>
+        <Ionicons name="menu-outline" size={24} />
+      </Pressable>
+
       <Text style={styles.appName}>Beer me!</Text>
       <Ionicons name="search-outline" size={24} />
     </View>
