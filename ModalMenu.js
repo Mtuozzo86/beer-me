@@ -13,8 +13,8 @@ export default function ModalMenu({ showModal, onCloseModal }) {
   return (
     <View>
       <Modal animationType="slide" isVisible={showModal} transparent={true}>
-        <Text>I am modal</Text>
-        <Button onPress={() => onCloseModal(false)} title="Hide modal" />
+        {/* <Text>I am modal</Text>
+        <Button onPress={() => onCloseModal(false)} title="Hide modal" /> */}
       </Modal>
     </View>
   );

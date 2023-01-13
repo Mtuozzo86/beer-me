@@ -1,3 +1,5 @@
+import React from "react";
+import { NativeBaseProvider, Box } from "native-base";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View } from "react-native";
 import { useState } from "react";
@@ -9,14 +11,18 @@ import RandomBeer from "./RandomBeer";
 export default function App() {
   const [showModal, setShowModal] = useState(false);
   return (
-    <View style={styles.container}>
-      <Navbar onSetShowModal={setShowModal} />
-      <RandomBeer />
-      <StatusBar style="auto" />
-      {showModal && (
-        <ModalMenu showModal={showModal} onCloseModal={setShowModal} />
-      )}
-    </View>
+    <NativeBaseProvider>
+      <Box flex={1}>
+        <View style={styles.container}>
+          <Navbar onSetShowModal={setShowModal} />
+          <RandomBeer />
+          <StatusBar style="auto" />
+          {showModal && (
+            <ModalMenu showModal={showModal} onCloseModal={setShowModal} />
+          )}
+        </View>
+      </Box>
+    </NativeBaseProvider>
   );
 }
 
