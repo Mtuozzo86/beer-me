@@ -8,18 +8,26 @@ import {
   Button,
   Modal,
 } from "react-native";
-// import Modal from "react-native-modal";
+import {
+  Slide,
+  Button,
+  Alert,
+  VStack,
+  Heading,
+  Divider,
+  Center,
+  NativeBaseProvider,
+  Box,
+  Text,
+} from "native-base";
 export default function ModalMenu({ showModal, onCloseModal }) {
   return (
-    <View>
-      <Modal animationType="slide" isVisible={showModal} transparent={true}>
-        {/* <Text>I am modal</Text>
-        <Button onPress={() => onCloseModal(false)} title="Hide modal" /> */}
-      </Modal>
-    </View>
+    <Box flex={1}>
+      {/* <Slide in={showModal} placement="left">
+        <Text>Slide in feature</Text>
+      </Slide> */}
+    </Box>
   );
 }
 
-const styles = StyleSheet.create({
-  modalContainer: {},
-});
+

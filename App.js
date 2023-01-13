@@ -11,18 +11,14 @@ import RandomBeer from "./RandomBeer";
 export default function App() {
   const [showModal, setShowModal] = useState(false);
   return (
-    <NativeBaseProvider>
-      <Box flex={1}>
+
         <View style={styles.container}>
-          <Navbar onSetShowModal={setShowModal} />
+          {/* <Navbar onSetShowModal={setShowModal} /> */}
           <RandomBeer />
           <StatusBar style="auto" />
-          {showModal && (
-            <ModalMenu showModal={showModal} onCloseModal={setShowModal} />
-          )}
+
         </View>
-      </Box>
-    </NativeBaseProvider>
+
   );
 }
 
