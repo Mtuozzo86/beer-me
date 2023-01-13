@@ -41,8 +41,9 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 70,
     padding: 5,
-    marginTop: 40,
+    paddingHorizontal: 20,
     borderBottomWidth: 2,
+    backgroundColor: '#fdc500'
   },
   appName: {
     fontSize: 30,

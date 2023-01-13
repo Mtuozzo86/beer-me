@@ -40,12 +40,6 @@ export default function RandomBeer() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#f0ec57",
-    alignItems: "center",
-    justifyContent: "flex-start",
-  },
   buttonContainer: {
     flex: 1,
     justifyContent: "center",
@@ -58,6 +52,8 @@ const styles = StyleSheet.create({
     borderWidth: 5,
     borderColor: "#0b0a07",
     borderRadius: 100,
+    backgroundColor: '#fdc500',
+
   },
   descriptionContainer: {
     flex: 1,

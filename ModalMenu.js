@@ -1,25 +1,21 @@
 import React from "react";
-import {
-  Alert,
-  StyleSheet,
-  Text,
-  Pressable,
-  View,
-  Button,
-  Modal,
-} from "react-native";
-// import Modal from "react-native-modal";
+import { Slide, Button, View, Box, Text } from "native-base";
 export default function ModalMenu({ showModal, onCloseModal }) {
   return (
-    <View>
-      <Modal animationType="slide" isVisible={showModal} transparent={true}>
-        <Text>I am modal</Text>
-        <Button onPress={() => onCloseModal(false)} title="Hide modal" />
-      </Modal>
-    </View>
+    <Slide in={showModal} placement="left">
+      <Box p="4" w="100%" top={100} bg="#fff">
+        <View>
+          <Text>
+            Top Text top top top topgjfdsg;jfldkgjf jasfjl s sljflsjfslfs f
+            sjlsj jsjsjlsjlljlsjflj f sjlsfljfjjjfljsl jljsljlsjljf
+            ljslsjlsjfkjlsjflj f fjjfjflss f j top
+          </Text>
+        </View>
+        <View>
+          <Text>Bottom Text</Text>
+        </View>
+        <Button onPress={() => onCloseModal(!showModal)}>Close</Button>
+      </Box>
+    </Slide>
   );
 }
-
-const styles = StyleSheet.create({
-  modalContainer: {},
-});
