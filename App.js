@@ -16,7 +16,7 @@ export default function App() {
         <Navbar onSetShowModal={setShowModal} />
         <RandomBeer />
         <ModalMenu showModal={showModal} onCloseModal={ setShowModal} />
-        <StatusBar style="auto" />
+        {/* <StatusBar style="auto" /> */}
       </View>
     </NativeBaseProvider>
   );
@@ -25,7 +25,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f0ec57",
+    backgroundColor: "#EFEFEF",
     alignItems: "center",
     justifyContent: "flex-start",
   },
