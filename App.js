@@ -15,7 +15,7 @@ export default function App() {
       <View style={styles.container}>
         <Navbar onSetShowModal={setShowModal} />
         <RandomBeer />
-        {showModal && <ModalMenu showModal={showModal} onCloseModal={ setShowModal} />}
+        <ModalMenu showModal={showModal} onCloseModal={ setShowModal} />
         <StatusBar style="auto" />
       </View>
     </NativeBaseProvider>

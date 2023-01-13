@@ -10,6 +10,7 @@ import React from "react";
 import {
   Slide,
   Button,
+  View,
   Alert,
   VStack,
   Heading,
@@ -22,20 +23,13 @@ import {
 export default function ModalMenu({ showModal, onCloseModal }) {
   return (
     <Slide in={showModal} placement="left">
-      <Box
-        p="1"
-        w="90%"
-        top='10'
-
-        bg="blue.50"
-      >
-        Due to government restrictions around COVID- 19, you may experience a
-        delay in your delivery. Due to government restrictions around COVID- 19,
-        you may experience a delay in your delivery. Due to government
-        restrictions around COVID- 19, you may experience a delay in your
-        delivery. Due to government restrictions around COVID- 19, you may
-        experience a delay in your delivery. Due to government restrictions
-        around COVID- 19, you may experience a delay in your delivery.
+      <Box p="4" w="100%" top="10" bg="#fff">
+        <View>
+          <Text>Top Text top top top topgjfdsg;jfldkgjf jasfjl s sljflsjfslfs f sjlsj jsjsjlsjlljlsjflj f sjlsfljfjjjfljsl  jljsljlsjljf  ljslsjlsjfkjlsjflj f fjjfjflss f j top</Text>
+        </View>
+        <View>
+          <Text>Bottom Text</Text>
+        </View>
         <Button onPress={() => onCloseModal(!showModal)}>Close</Button>
       </Box>
     </Slide>
