@@ -25,10 +25,12 @@ export default function Navbar({ onSetShowModal }) {
           onSetShowModal(true);
         }}
       >
-        <Ionicons name="menu-outline" size={24} />
+        <Ionicons name="menu-outline" size={30} />
       </Pressable>
       <Text style={styles.appName}>Beer me!</Text>
-      <Ionicons name="search-outline" size={24} />
+      <Pressable>
+        <Ionicons name="search-outline" size={30} />
+      </Pressable>
     </View>
   );
 }
@@ -39,11 +41,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     width: "100%",
-    height: 70,
+    height: 80,
     padding: 5,
     paddingHorizontal: 20,
     borderBottomWidth: 2,
-    backgroundColor: '#fdc500'
+    backgroundColor: "#fdc500",
+    paddingTop: 30,
   },
   appName: {
     fontSize: 30,

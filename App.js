@@ -16,7 +16,7 @@ export default function App() {
         <Navbar onSetShowModal={setShowModal} />
         <RandomBeer />
         <ModalMenu showModal={showModal} onCloseModal={ setShowModal} />
-        {/* <StatusBar style="auto" /> */}
+        <StatusBar style="auto" currentHeight/>
       </View>
     </NativeBaseProvider>
   );
