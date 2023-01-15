@@ -12,8 +12,8 @@ export default function RandomBeer() {
 
   function renderStuff({ item }) {
     return (
-      <View style={styles.description} onPress={() => setBeers([])}>
-        <Pressable onPress={() => setBeers([])}>
+      <View>
+        <Pressable onPress={() => setBeers([])} style={{alignSelf: 'start'}}>
           <Ionicons name="arrow-back-outline" size={30} />
         </Pressable>
 
@@ -60,8 +60,6 @@ const styles = StyleSheet.create({
   },
   descriptionContainer: {
     flex: 1,
-    // width: 300,
     padding: 10,
   },
-  description: {},
 });
