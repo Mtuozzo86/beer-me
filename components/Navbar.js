@@ -3,11 +3,10 @@ import { View, Text, StyleSheet, Pressable } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
-import ModalMenu from "./ModalMenu";
 
-export default function Navbar({ onSetShowModal }) {
+export default function Navbar({ onSetShowModal, showModal }) {
   const [fontsLoaded] = useFonts({
-    "Rowdies-Bold": require("./assets/fonts/Rowdies-Bold.ttf"),
+    "Rowdies-Bold": require("../assets/fonts/Rowdies-Bold.ttf"),
   });
   const onLayoutRootView = useCallback(async () => {
     if (fontsLoaded) {
@@ -22,10 +21,13 @@ export default function Navbar({ onSetShowModal }) {
     <View style={styles.container} onLayout={onLayoutRootView}>
       <Pressable
         onPress={() => {
-          onSetShowModal(true);
+          onSetShowModal(!showModal);
         }}
       >
-        <Ionicons name="menu-outline" size={30} />
+        <Ionicons
+          name={!showModal ? "menu-outline" : "arrow-back-outline"}
+          size={30}
+        />
       </Pressable>
       <Text style={styles.appName}>Beer me!</Text>
       <Pressable>

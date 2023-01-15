@@ -12,13 +12,17 @@ export default function RandomBeer() {
 
   function renderStuff({ item }) {
     return (
-      <Pressable style={styles.description} onPress={() => setBeers([])}>
+      <View style={styles.description} onPress={() => setBeers([])}>
+        <Pressable onPress={() => setBeers([])}>
+          <Ionicons name="arrow-back-outline" size={30} />
+        </Pressable>
+
         <Text style={{ fontSize: 38 }}>{item.name}</Text>
         <Text>ABV: {item.abv}</Text>
         <Text style={{ fontStyle: "italic", marginTop: 16 }}>
           {item.description}
         </Text>
-      </Pressable>
+      </View>
     );
   }
 
@@ -29,7 +33,7 @@ export default function RandomBeer() {
           <FlatList data={beers} renderItem={renderStuff} />
         </View>
       ) : (
-        <View >
+        <View>
           <Pressable style={styles.beerButton} onPress={() => getRandomBeer()}>
             <Ionicons name="beer" size={70} color="#0b0a07" />
           </Pressable>
@@ -52,8 +56,7 @@ const styles = StyleSheet.create({
     borderWidth: 5,
     borderColor: "#0b0a07",
     borderRadius: 100,
-    backgroundColor: '#fdc500',
-
+    backgroundColor: "#fdc500",
   },
   descriptionContainer: {
     flex: 1,
