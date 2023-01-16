@@ -3,8 +3,7 @@ import { StyleSheet, Text, View, Pressable, FlatList } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 export default function RandomBeer() {
   const [beers, setBeers] = useState([]);
-  console.log(beers)
-
+  const [toggleHeart, setToggleHeart] = useState(false);
 
   async function getRandomBeer() {
     const resp = await fetch("https://api.punkapi.com/v2/beers/random");
@@ -14,12 +13,23 @@ export default function RandomBeer() {
   function renderStuff({ item }) {
     return (
       <View>
-        <View>
+        <View
+          style={{
+            justifyContent: "space-between",
+            display: "flex",
+            flexDirection: "row",
+          }}
+        >
           <Ionicons
             name="arrow-back-outline"
             size={38}
             onPress={() => setBeers([])}
-            style={{ alignSelf: "flex-start" }}
+          />
+          <Ionicons
+            name={toggleHeart ? "heart" : "heart-outline"}
+            size={38}
+            color="red"
+            onPress={() => setToggleHeart(!toggleHeart)}
           />
         </View>
         <Text style={{ fontSize: 38 }}>{item.name}</Text>
