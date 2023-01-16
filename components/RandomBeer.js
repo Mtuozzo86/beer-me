@@ -12,19 +12,22 @@ export default function RandomBeer() {
   function renderStuff({ item }) {
     return (
       <View>
-        <Pressable onPress={() => setBeers([])}>
-          <Ionicons name="arrow-back-outline" size={30} />
-        </Pressable>
+        <View>
+          <Ionicons
+            name="arrow-back-outline"
+            size={38}
+            onPress={() => setBeers([])}
+            style={{ alignSelf: "flex-start" }}
+          />
+        </View>
         <Text style={{ fontSize: 38 }}>{item.name}</Text>
         <Text>ABV: {item.abv}</Text>
-
         <Text style={{ fontStyle: "italic", marginTop: 16 }}>
           {item.description}
         </Text>
       </View>
     );
   }
-
 
   return (
     <View style={styles.buttonContainer}>
