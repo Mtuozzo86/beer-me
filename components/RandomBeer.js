@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { StyleSheet, Text, View, Pressable, FlatList } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 export default function RandomBeer() {
   const [beers, setBeers] = useState([]);
+  console.log(beers)
+
 
   async function getRandomBeer() {
     const resp = await fetch("https://api.punkapi.com/v2/beers/random");
