@@ -4,21 +4,20 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 export default function RandomBeer() {
   const [beers, setBeers] = useState([]);
 
-  function getRandomBeer() {
-    fetch("https://api.punkapi.com/v2/beers/random")
-      .then((r) => r.json())
-      .then((data) => setBeers(data));
+  async function getRandomBeer() {
+    const resp = await fetch("https://api.punkapi.com/v2/beers/random");
+    const data = await resp.json();
+    setBeers(data);
   }
-
   function renderStuff({ item }) {
     return (
       <View>
-        <Pressable onPress={() => setBeers([])} style={{alignSelf: 'start'}}>
+        <Pressable onPress={() => setBeers([])}>
           <Ionicons name="arrow-back-outline" size={30} />
         </Pressable>
-
         <Text style={{ fontSize: 38 }}>{item.name}</Text>
         <Text>ABV: {item.abv}</Text>
+
         <Text style={{ fontStyle: "italic", marginTop: 16 }}>
           {item.description}
         </Text>
@@ -26,11 +25,16 @@ export default function RandomBeer() {
     );
   }
 
+
   return (
     <View style={styles.buttonContainer}>
       {beers.length ? (
         <View style={styles.descriptionContainer}>
-          <FlatList data={beers} renderItem={renderStuff} />
+          <FlatList
+            data={beers}
+            renderItem={renderStuff}
+            keyExtractor={(item) => item.id.toString()}
+          />
         </View>
       ) : (
         <View>
@@ -47,7 +51,7 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flex: 1,
     justifyContent: "center",
-    alignItems: 'center'
+    alignItems: "center",
   },
   beerButton: {
     justifyContent: "center",
