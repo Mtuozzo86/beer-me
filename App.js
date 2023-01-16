@@ -5,6 +5,7 @@ import { StyleSheet, View } from "react-native";
 import { useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { navigationRef } from './RootNavigation';
 import ModalMenu from "./components/ModalMenu";
 import Navbar from "./components/Navbar";
 import RandomBeer from "./components/RandomBeer";
@@ -17,7 +18,7 @@ export default function App() {
 
   return (
     <NativeBaseProvider>
-      <NavigationContainer>
+      <NavigationContainer ref={navigationRef}>
         <Navbar showModal={showModal} onSetShowModal={setShowModal} />
         <ModalMenu showModal={showModal} onCloseModal={setShowModal} />
         <Stack.Navigator screenOptions={{ headerShown: false }}>
