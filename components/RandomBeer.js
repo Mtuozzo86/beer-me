@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { StyleSheet, Text, View, Pressable, FlatList } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
-export default function RandomBeer() {
+export default function RandomBeer(props) {
+  console.log(props)
   const [beers, setBeers] = useState([]);
   const [toggleHeart, setToggleHeart] = useState(false);
 

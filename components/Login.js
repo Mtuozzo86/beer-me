@@ -13,7 +13,7 @@ import {
 
 import React, {useState} from "react";
 
-export default function Login() {
+export default function Login({navigation}) {
   const [user, setUser] = useState('')
   const [password, setPassword] = useState('')
 
@@ -57,7 +57,7 @@ export default function Login() {
               type="password"
             />
           </FormControl>
-          <Button mt="2" bg="#fdc500">
+          <Button mt="2" bg="#fdc500" onPress={() => navigation.navigate('Random Beer', {loggedIn: user})}>
             <Text>Sign in</Text>
           </Button>
           <HStack mt="6" justifyContent="center">
