@@ -9,10 +9,11 @@ import {
   VStack,
   Pressable,
 } from "native-base";
-export default function ModalMenu({ showModal, onCloseModal }) {
+export default function ModalMenu({ showModal, onCloseModal, theUser }) {
   return (
     <Slide in={showModal} placement="left">
       <Box p="4" w="100%" top={100} bg="#fff" shadow={8}>
+        <Center p="4">{theUser ? theUser : "Welcome to beer me!"}</Center>
         <VStack space={4} alignItems="stretch">
           <Pressable
             onPress={() => {

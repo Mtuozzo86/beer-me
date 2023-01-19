@@ -1,11 +1,9 @@
 import React from "react";
-import { NativeBaseProvider, Box, Text } from "native-base";
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View } from "react-native";
+import { NativeBaseProvider} from "native-base";
 import { useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { navigationRef } from './RootNavigation';
+import { navigationRef } from "./RootNavigation";
 import ModalMenu from "./components/ModalMenu";
 import Navbar from "./components/Navbar";
 import RandomBeer from "./components/RandomBeer";
@@ -15,28 +13,24 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
   const [showModal, setShowModal] = useState(false);
+  const [user, setUser] = useState("");
 
   return (
     <NativeBaseProvider>
       <NavigationContainer ref={navigationRef}>
         <Navbar showModal={showModal} onSetShowModal={setShowModal} />
-        <ModalMenu showModal={showModal} onCloseModal={setShowModal} />
+        <ModalMenu
+          showModal={showModal}
+          onCloseModal={setShowModal}
+          theUser={user}
+        />
         <Stack.Navigator screenOptions={{ headerShown: false }}>
-          
           <Stack.Screen name="Random Beer" component={RandomBeer} />
-          <Stack.Screen name="Login/Create" component={Login} />
-          
+          <Stack.Screen name="Login/Create">
+            {(props) => <Login {...props} onHandleUser={setUser} />}
+          </Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>
     </NativeBaseProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#EFEFEF",
-    alignItems: "center",
-    justifyContent: "flex-start",
-  },
-});

@@ -11,11 +11,11 @@ import {
   Center,
 } from "native-base";
 
-import React, {useState} from "react";
+import React, { useState } from "react";
 
-export default function Login({navigation}) {
-  const [user, setUser] = useState('')
-  const [password, setPassword] = useState('')
+export default function Login({ navigation, onHandleUser }) {
+  const [user, setUser] = useState("");
+  const [password, setPassword] = useState("");
 
   return (
     <Center w="100%" flex={1}>
@@ -57,7 +57,14 @@ export default function Login({navigation}) {
               type="password"
             />
           </FormControl>
-          <Button mt="2" bg="#fdc500" onPress={() => navigation.navigate('Random Beer', {loggedIn: user})}>
+          <Button
+            mt="2"
+            bg="#fdc500"
+            onPress={() => {
+              navigation.navigate("Random Beer")
+              onHandleUser(user)
+            }}
+          >
             <Text>Sign in</Text>
           </Button>
           <HStack mt="6" justifyContent="center">
