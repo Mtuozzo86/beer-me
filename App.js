@@ -1,19 +1,26 @@
 import React from "react";
 import { NativeBaseProvider} from "native-base";
 import { useState } from "react";
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, StackActions } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { navigationRef } from "./RootNavigation";
 import ModalMenu from "./components/ModalMenu";
 import Navbar from "./components/Navbar";
 import RandomBeer from "./components/RandomBeer";
 import Login from "./components/Login";
+import ListOfFavorites from "./components/ListOfFavorites";
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   const [showModal, setShowModal] = useState(false);
   const [user, setUser] = useState("");
+  const [favorites, setFavorites] = useState([])
+  
+  function handleFavoriteBeer(thing) {
+    setFavorites(thing)
+    console.log('app component, clicked favorite: ', thing)
+  }
 
   return (
     <NativeBaseProvider>
@@ -25,9 +32,14 @@ export default function App() {
           theUser={user}
         />
         <Stack.Navigator screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="Random Beer" component={RandomBeer} />
+          <Stack.Screen name="Random Beer">
+            {(props) => <RandomBeer {...props} onAddFavoriteBeer={handleFavoriteBeer}/>}
+          </Stack.Screen>
           <Stack.Screen name="Login/Create">
             {(props) => <Login {...props} onHandleUser={setUser} />}
+          </Stack.Screen>
+          <Stack.Screen name="Favorites">
+            {(props) => <ListOfFavorites {...props} beer={favorites}/>}
           </Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>

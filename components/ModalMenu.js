@@ -24,9 +24,15 @@ export default function ModalMenu({ showModal, onCloseModal, theUser }) {
               <Text>Home</Text>
             </Center>
           </Pressable>
-          <Center w="100%" h="10" bg="#fdc500" rounded="md" shadow={3}>
-            <Text>Favorites</Text>
-          </Center>
+          <Pressable
+            onPress={() => {
+              RootNavigation.navigate("Favorites"), onCloseModal(!showModal);
+            }}
+          >
+            <Center w="100%" h="10" bg="#fdc500" rounded="md" shadow={3}>
+              <Text>Favorites</Text>
+            </Center>
+          </Pressable>
           <Pressable
             onPress={() => {
               RootNavigation.navigate("Login/Create"), onCloseModal(!showModal);

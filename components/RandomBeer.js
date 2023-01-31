@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { StyleSheet, Text, View, Pressable, FlatList } from "react-native";
+import ListOfFavorites from "./ListOfFavorites";
 import Ionicons from "react-native-vector-icons/Ionicons";
-export default function RandomBeer(props) {
-  console.log(props)
+export default function RandomBeer({onAddFavoriteBeer}) {
   const [beers, setBeers] = useState([]);
   const [toggleHeart, setToggleHeart] = useState(false);
 
@@ -30,7 +30,10 @@ export default function RandomBeer(props) {
             name={toggleHeart ? "heart" : "heart-outline"}
             size={38}
             color="red"
-            onPress={() => setToggleHeart(!toggleHeart)}
+            onPress={() => {
+              setToggleHeart(!toggleHeart);
+              onAddFavoriteBeer(item)
+            }}
           />
         </View>
         <Text style={{ fontSize: 38 }}>{item.name}</Text>
