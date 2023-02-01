@@ -6,57 +6,20 @@ import SingleBeer from "./SingleBeer";
 
 export default function RandomBeer({onAddFavoriteBeer, favorites}) {
   const [beers, setBeers] = useState([]);
-  const [toggleHeart, setToggleHeart] = useState(false); 
-  // const [selectedHearts, setSelectedHearts] = useState([])
-  // console.log('clicked hearts:', selectedHearts)
+
 
   async function getRandomBeer() {
-    const resp = await fetch("https://api.punkapi.com/v2/beers/");
+    const resp = await fetch("https://api.punkapi.com/v2/beers/random");
     const data = await resp.json();
     setBeers(data);
   }
 
-  function handleLikeBeer(item) {
-    // const selected = beers.find(beer => beer.id === item.id)
-    onAddFavoriteBeer(item)
-    // setSelectedHearts([...selectedHearts, selected])
-    // setToggleHeart(!toggleHeart)
 
-    console.log(selected)
-  }
 
   function renderRandomBeer({ item }) {
     return (
       <SingleBeer item={item} onAddFavoriteBeer={onAddFavoriteBeer}/>
-      // <View>
-      //   <View
-      //     style={{
-      //       justifyContent: "space-between",
-      //       display: "flex",
-      //       flexDirection: "row",
-      //     }}
-      //   >
-      //     <Ionicons
-      //       name="arrow-back-outline"
-      //       size={38}
-      //       onPress={() => setBeers([])}
-      //     />
-      //     <Ionicons
-      //       name={toggleHeart ? "heart" : "heart-outline"}
-      //       size={38}
-      //       color="red"
-      //       onPress={() => {
-      //         handleLikeBeer(item),
-      //         setToggleHeart(!toggleHeart)
-      //       }}
-      //     />
-      //   </View>
-      //   <Text style={{ fontSize: 38 }}>{item.name}</Text>
-      //   <Text>ABV: {item.abv}</Text>
-      //   <Text style={{ fontStyle: "italic", marginTop: 16 }}>
-      //     {item.description}
-      //   </Text>
-      // </View>
+      
     );
   }
 

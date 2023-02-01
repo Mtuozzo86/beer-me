@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { StyleSheet, Text, View, Pressable, FlatList } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import * as RootNavigation from "../RootNavigation";
 
 
 export default function SingleBeer({onAddFavoriteBeer, item}) {
@@ -33,7 +34,9 @@ export default function SingleBeer({onAddFavoriteBeer, item}) {
           <Ionicons
             name="arrow-back-outline"
             size={38}
-            onPress={() => setBeers([])}
+            onPress={() => {
+                RootNavigation.navigate("Random Beer")
+              }}
           />
           <Ionicons
             name={toggleHeart ? "heart" : "heart-outline"}
