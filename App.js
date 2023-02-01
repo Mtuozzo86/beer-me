@@ -18,8 +18,8 @@ export default function App() {
   const [favorites, setFavorites] = useState([])
   
   function handleFavoriteBeer(thing) {
-    setFavorites(thing)
-    console.log('app component, clicked favorite: ', thing)
+    const newBeer = thing
+    setFavorites([...favorites, newBeer])
   }
 
   return (
@@ -33,7 +33,9 @@ export default function App() {
         />
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen name="Random Beer">
-            {(props) => <RandomBeer {...props} onAddFavoriteBeer={handleFavoriteBeer}/>}
+            {(props) => <RandomBeer {...props} onAddFavoriteBeer={handleFavoriteBeer}
+            favorites={favorites}
+            />}
           </Stack.Screen>
           <Stack.Screen name="Login/Create">
             {(props) => <Login {...props} onHandleUser={setUser} />}

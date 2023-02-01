@@ -1,17 +1,30 @@
 import { useState, useEffect } from "react";
 import { StyleSheet, Text, View, Pressable, FlatList } from "react-native";
-import ListOfFavorites from "./ListOfFavorites";
 import Ionicons from "react-native-vector-icons/Ionicons";
-export default function RandomBeer({onAddFavoriteBeer}) {
+
+
+export default function RandomBeer({onAddFavoriteBeer, favorites}) {
   const [beers, setBeers] = useState([]);
-  const [toggleHeart, setToggleHeart] = useState(false);
+  const [toggleHeart, setToggleHeart] = useState(false); 
+  const [selectedHearts, setSelectedHearts] = useState([])
+  console.log('clicked hearts:', selectedHearts)
 
   async function getRandomBeer() {
-    const resp = await fetch("https://api.punkapi.com/v2/beers/random");
+    const resp = await fetch("https://api.punkapi.com/v2/beers/");
     const data = await resp.json();
     setBeers(data);
   }
-  function renderStuff({ item }) {
+
+  function handleLikeBeer(item) {
+    const selected = beers.find(beer => beer.id === item.id)
+    onAddFavoriteBeer(item)
+    setSelectedHearts([...selectedHearts, selected])
+    // setToggleHeart(!toggleHeart)
+
+    console.log(selected)
+  }
+
+  function renderRandomBeer({ item }) {
     return (
       <View>
         <View
@@ -31,8 +44,7 @@ export default function RandomBeer({onAddFavoriteBeer}) {
             size={38}
             color="red"
             onPress={() => {
-              setToggleHeart(!toggleHeart);
-              onAddFavoriteBeer(item)
+              handleLikeBeer(item)
             }}
           />
         </View>
@@ -51,7 +63,7 @@ export default function RandomBeer({onAddFavoriteBeer}) {
         <View style={styles.descriptionContainer}>
           <FlatList
             data={beers}
-            renderItem={renderStuff}
+            renderItem={renderRandomBeer}
             keyExtractor={(item) => item.id.toString()}
           />
         </View>

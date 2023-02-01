@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, FlatList } from 'react-native'
 import React, {useState} from 'react'
 
 export default function ListOfFavorites({beer}) {
@@ -7,7 +7,10 @@ export default function ListOfFavorites({beer}) {
   return (
     <View>
       <Text>ListOfFavorites</Text>
-      {/* <View>{favorites}</View> */}
+      <FlatList 
+        data={beer}
+        renderItem={({item}) => <Text style={{ fontSize: 38 }}>{item.name}</Text>}
+      />
     </View>
   )
 }
