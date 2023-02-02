@@ -3,79 +3,46 @@ import { StyleSheet, Text, View, Pressable, FlatList } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import * as RootNavigation from "../RootNavigation";
 
-
-export default function SingleBeer({onAddFavoriteBeer, item}) {
-
-  const [toggleHeart, setToggleHeart] = useState(false); 
-//   const [selectedHearts, setSelectedHearts] = useState([])
-//   console.log('clicked hearts:', selectedHearts)
-
+export default function SingleBeer({ onAddFavoriteBeer, item, onGoBack }) {
+  const [toggleHeart, setToggleHeart] = useState(false);
 
 
   function handleLikeBeer(item) {
-    // const selected = beers.find(beer => beer.id === item.id)
-    onAddFavoriteBeer(item)
-    // setSelectedHearts([...selectedHearts, selected])
-    // setToggleHeart(!toggleHeart)
-
-    // console.log(selected)
+    onAddFavoriteBeer(item);
   }
 
-  
-    return (
-      <View>
-        <View
-          style={{
-            justifyContent: "space-between",
-            display: "flex",
-            flexDirection: "row",
+  return (
+    <View>
+      <View
+        style={{
+          justifyContent: "space-between",
+          display: "flex",
+          flexDirection: "row",
+        }}
+      >
+        <Ionicons
+          name="arrow-back-outline"
+          size={38}
+          onPress={() => {
+            onGoBack(handleGoBack)
           }}
-        >
-          <Ionicons
-            name="arrow-back-outline"
-            size={38}
-            onPress={() => {
-                RootNavigation.navigate("Random Beer")
-              }}
-          />
-          <Ionicons
-            name={toggleHeart ? "heart" : "heart-outline"}
-            size={38}
-            color="red"
-            onPress={() => {
-              handleLikeBeer(item),
-              setToggleHeart(!toggleHeart)
-            }}
-          />
-        </View>
-        <Text style={{ fontSize: 38 }}>{item.name}</Text>
-        <Text>ABV: {item.abv}</Text>
-        <Text style={{ fontStyle: "italic", marginTop: 16 }}>
-          {item.description}
-        </Text>
+        />
+        <Ionicons
+          name={toggleHeart ? "heart" : "heart-outline"}
+          size={38}
+          color="red"
+          onPress={() => {
+            handleLikeBeer(item), setToggleHeart(!toggleHeart);
+          }}
+        />
       </View>
-    );
-  
-
-//   return (
-//     <View style={styles.buttonContainer}>
-//       {beers.length ? (
-//         <View style={styles.descriptionContainer}>
-//           <FlatList
-//             data={beers}
-//             renderItem={renderRandomBeer}
-//             keyExtractor={(item) => item.id.toString()}
-//           />
-//         </View>
-//       ) : (
-//         <View>
-//           <Pressable style={styles.beerButton} onPress={() => getRandomBeer()}>
-//             <Ionicons name="beer" size={70} color="#0b0a07" />
-//           </Pressable>
-//         </View>
-//       )}
-//     </View>
-//   );
+      <Text style={{ fontSize: 38 }}>{item.name}</Text>
+      <Text>ABV: {item.abv}</Text>
+      <Text style={{ fontStyle: "italic", marginTop: 16 }}>
+        {item.description}
+      </Text>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({

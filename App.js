@@ -17,10 +17,11 @@ export default function App() {
   const [user, setUser] = useState("");
   const [favorites, setFavorites] = useState([])
   
-  function handleFavoriteBeer(thing) {
-    const newBeer = thing
-    setFavorites([...favorites, newBeer])
+  function handleFavoriteBeer(clicked) {
+    setFavorites(favorites.includes(clicked) ? favorites.filter(beer => beer !== clicked) : [...favorites, clicked])  
   }
+
+
 
   return (
     <NativeBaseProvider>

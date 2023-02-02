@@ -4,7 +4,7 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import SingleBeer from "./SingleBeer";
 
 
-export default function RandomBeer({onAddFavoriteBeer, favorites}) {
+export default function RandomBeer({onAddFavoriteBeer}) {
   const [beers, setBeers] = useState([]);
 
 
@@ -18,7 +18,7 @@ export default function RandomBeer({onAddFavoriteBeer, favorites}) {
 
   function renderRandomBeer({ item }) {
     return (
-      <SingleBeer item={item} onAddFavoriteBeer={onAddFavoriteBeer}/>
+      <SingleBeer item={item} onAddFavoriteBeer={onAddFavoriteBeer} onGoBack={null}/>
       
     );
   }
