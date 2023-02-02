@@ -24,7 +24,7 @@ export default function SingleBeer({ onAddFavoriteBeer, item, onGoBack }) {
           name="arrow-back-outline"
           size={38}
           onPress={() => {
-            onGoBack(handleGoBack)
+            onGoBack('go back')
           }}
         />
         <Ionicons

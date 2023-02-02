@@ -14,11 +14,13 @@ export default function RandomBeer({onAddFavoriteBeer}) {
     setBeers(data);
   }
 
-
+  function handleGoBack(params) {
+    setBeers([])
+  }
 
   function renderRandomBeer({ item }) {
     return (
-      <SingleBeer item={item} onAddFavoriteBeer={onAddFavoriteBeer} onGoBack={null}/>
+      <SingleBeer item={item} onAddFavoriteBeer={onAddFavoriteBeer} onGoBack={handleGoBack}/>
       
     );
   }
