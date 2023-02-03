@@ -9,6 +9,7 @@ import {
   VStack,
   Pressable,
 } from "native-base";
+
 export default function ModalMenu({ showModal, onCloseModal, theUser }) {
   return (
     <Slide in={showModal} placement="left">
