@@ -16,7 +16,6 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   const [showModal, setShowModal] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
-
   const [user, setUser] = useState("");
   const [favorites, setFavorites] = useState([]);
 

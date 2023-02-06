@@ -12,9 +12,12 @@ import {
 } from "native-base";
 
 import React, { useState } from "react";
+import FilterOptions from "./FilterOptions";
 
 export default function Search({ onCloseSearch, showSearch }) {
   const [input, setInput] = useState("");
+  const [showFilterOptions, setShowFilterOptions] = useState(false);
+
   function handleInputSearch(e) {
     setInput(e.target.value);
   }
@@ -28,6 +31,12 @@ export default function Search({ onCloseSearch, showSearch }) {
               <Text>Search</Text>
             </Button>
           </Flex>
+          <Flex mt="3" alignItems="flex-end">
+            <Text onPress={() => setShowFilterOptions(!showFilterOptions)}>
+              Filters
+            </Text>
+          </Flex>
+          {showFilterOptions && <FilterOptions />}
         </Box>
       </Slide>
     </Box>
