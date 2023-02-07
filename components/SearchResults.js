@@ -16,6 +16,7 @@ export default function SearchResults({route}) {
       renderItem={({item}) => (
         <Text onPress={() => console.log(item.name)}>{item.name}</Text>
       )}
+      keyExtractor={item => item.id}
       />
     </View>
   )
