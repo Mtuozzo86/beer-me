@@ -4,7 +4,7 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import * as RootNavigation from "../RootNavigation";
 
 export default function SingleBeer({ onAddFavoriteBeer, item, onGoBack }) {
-  console.log('rendered', item)
+
   const [toggleHeart, setToggleHeart] = useState(false);
 
 

@@ -11,7 +11,7 @@ export default function SearchResults({ route }) {
     fetch(`https://api.punkapi.com/v2/beers?beer_name=${input}`)
       .then((r) => r.json())
       .then((data) => setResults(data));
-  }, []);
+  }, [results]);
   return (
     <ScrollView>
       <View>
