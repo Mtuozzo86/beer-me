@@ -1,6 +1,6 @@
-import { View, Text, FlatList, ScrollView } from "react-native";
+import { View, FlatList } from "react-native";
 import React, { useEffect, useState } from "react";
-import { VStack } from "native-base";
+
 import Result from "./Result";
 
 export default function SearchResults({ route }) {
@@ -13,13 +13,11 @@ export default function SearchResults({ route }) {
   }, [input]);
 
   return (
-    <ScrollView>
-        <View>
-          <FlatList
-            data={results}
-            renderItem={({ item }) => <Result item={item} />}
-          />
-        </View>
-    </ScrollView>
+    <View>
+      <FlatList
+        data={results}
+        renderItem={({ item }) => <Result item={item} />}
+      />
+    </View>
   );
 }

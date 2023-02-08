@@ -4,9 +4,7 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import * as RootNavigation from "../RootNavigation";
 
 export default function SingleBeer({ onAddFavoriteBeer, item, onGoBack }) {
-
   const [toggleHeart, setToggleHeart] = useState(false);
-
 
   function handleLikeBeer(item) {
     onAddFavoriteBeer(item);
@@ -25,7 +23,7 @@ export default function SingleBeer({ onAddFavoriteBeer, item, onGoBack }) {
           name="arrow-back-outline"
           size={38}
           onPress={() => {
-            onGoBack('go back')
+            onGoBack("go back");
           }}
         />
         <Ionicons
