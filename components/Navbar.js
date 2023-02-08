@@ -4,7 +4,7 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 
-export default function Navbar({ onSetShowModal, showModal }) {
+export default function Navbar({ onSetShowModal, showModal, showSearch, onSetShowSearch }) {
   const [fontsLoaded] = useFonts({
     "Rowdies-Bold": require("../assets/fonts/Rowdies-Bold.ttf"),
   });
@@ -21,6 +21,7 @@ export default function Navbar({ onSetShowModal, showModal }) {
     <View style={styles.container} onLayout={onLayoutRootView}>
       <Pressable
         onPress={() => {
+          console.log(showModal)
           onSetShowModal(!showModal);
         }}
       >
@@ -30,7 +31,10 @@ export default function Navbar({ onSetShowModal, showModal }) {
         />
       </Pressable>
       <Text style={styles.appName}>Beer me!</Text>
-      <Pressable>
+      <Pressable onPress={() => {
+        onSetShowSearch(!showSearch)
+        
+      }}>
         <Ionicons name="search-outline" size={30} />
       </Pressable>
     </View>
