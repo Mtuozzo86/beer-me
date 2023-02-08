@@ -13,11 +13,13 @@ export default function SearchResults({ route }) {
   }, [input]);
 
   return (
-    <View>
-      <FlatList
-        data={results}
-        renderItem={({ item }) => <Result item={item} />}
-      />
-    </View>
+    <ScrollView>
+        <View>
+          <FlatList
+            data={results}
+            renderItem={({ item }) => <Result item={item} />}
+          />
+        </View>
+    </ScrollView>
   );
 }
