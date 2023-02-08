@@ -1,13 +1,20 @@
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet, Image } from "react-native";
 import React from "react";
-import { Center, VStack, Box } from "native-base";
+import { Center, VStack, Box, Flex } from "native-base";
 
 export default function Result({ item }) {
+  const { image_url } = item;
   return (
-    <VStack>
-        <Box h="20" rounded="md" shadow={3}>
-      <Text>{item.name}</Text>
-      </Box>
-    </VStack>
+    <Flex direction="row" justifyContent="space-between">
+      <View>
+        <Text>{item.name}</Text>
+        <Text>{item.abv}</Text>
+      </View>
+      <Image
+        source={{ uri: image_url }}
+        style={{ height: 300, width: 200, resizeMode: "contain" }}
+        alt="Beer picture"
+      />
+    </Flex>
   );
 }
