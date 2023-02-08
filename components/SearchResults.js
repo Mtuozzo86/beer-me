@@ -13,19 +13,6 @@ export default function SearchResults({ route }) {
   }, [input]);
 
   return (
-<<<<<<< HEAD
-    <View>
-      <FlatList 
-      data={results}
-      renderItem={({item}) => (
-        <Text onPress={() => console.log(item.name)}>{item.name}</Text>
-      )}
-      keyExtractor={item => item.id}
-      />
-    </View>
-  )
-}
-=======
     <ScrollView>
         <View>
           <FlatList
@@ -36,4 +23,3 @@ export default function SearchResults({ route }) {
     </ScrollView>
   );
 }
->>>>>>> search
