@@ -2,11 +2,10 @@ import { useState, useEffect } from "react";
 import { StyleSheet, Text, View, Pressable, FlatList } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import SingleBeer from "./SingleBeer";
+import { PresenceTransition } from "native-base";
 
-
-export default function RandomBeer({onAddFavoriteBeer}) {
+export default function RandomBeer({ onAddFavoriteBeer }) {
   const [beers, setBeers] = useState([]);
-
 
   async function getRandomBeer() {
     const resp = await fetch("https://api.punkapi.com/v2/beers/random");
@@ -15,13 +14,16 @@ export default function RandomBeer({onAddFavoriteBeer}) {
   }
 
   function handleGoBack(params) {
-    setBeers([])
+    setBeers([]);
   }
 
   function renderRandomBeer({ item }) {
     return (
-      <SingleBeer item={item} onAddFavoriteBeer={onAddFavoriteBeer} onGoBack={handleGoBack}/>
-      
+      <SingleBeer
+        item={item}
+        onAddFavoriteBeer={onAddFavoriteBeer}
+        onGoBack={handleGoBack}
+      />
     );
   }
 
@@ -37,9 +39,27 @@ export default function RandomBeer({onAddFavoriteBeer}) {
         </View>
       ) : (
         <View>
-          <Pressable style={styles.beerButton} onPress={() => getRandomBeer()}>
-            <Ionicons name="beer" size={70} color="#0b0a07" />
-          </Pressable>
+          <PresenceTransition
+            visible={true}
+            initial={{
+              opacity: 0,
+              scale: 0,
+            }}
+            animate={{
+              opacity: 1,
+              scale: 1,
+              transition: {
+                duration: 250,
+              },
+            }}
+          >
+            <Pressable
+              style={styles.beerButton}
+              onPress={() => getRandomBeer()}
+            >
+              <Ionicons name="beer" size={70} color="#0b0a07" />
+            </Pressable>
+          </PresenceTransition>
         </View>
       )}
     </View>
