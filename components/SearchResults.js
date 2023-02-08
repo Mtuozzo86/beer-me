@@ -21,4 +21,3 @@ export default function SearchResults({ route }) {
     </View>
   );
 }
-// fix somethign else
