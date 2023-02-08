@@ -23,3 +23,4 @@ export default function SearchResults({ route }) {
     </ScrollView>
   );
 }
+// fix
