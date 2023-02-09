@@ -4,10 +4,18 @@ import React, { useEffect, useState } from "react";
 import Result from "./Result";
 
 export default function SearchResults({ route }) {
+
   const [results, setResults] = useState([]);
+  const [punkapi , setPunkApi] = useState([])
+  const [stouts, setStouts] = useState([])
+  const [ale, setAle] = useState([])
+
+
   const { input } = route.params;
 
-  const searchAlphabetically = results.sort(function (a, b) {
+
+  // CURRENTLY HANDLING FROM PUNK API
+  const searchAlphabetically = punkapi.sort(function (a, b) {
     if (a.name < b.name) {
       return -1;
     }
@@ -20,15 +28,28 @@ export default function SearchResults({ route }) {
   useEffect(() => {
     fetch(`https://api.punkapi.com/v2/beers?beer_name=${input}`)
       .then((r) => r.json())
-      .then((data) => setResults(data));
+      .then((data) => setPunkApi(data));
   }, [input]);
 
+  useEffect(() => {
+    Promise.all([
+      fetch("https://api.sampleapis.com/beers/ale"),
+      fetch("https://api.sampleapis.com/beers/stouts"),
+    ])
+      .then(([ale, stouts]) => Promise.all([ale.json(), stouts.json()]))
+      .then(([ale, stouts]) => {
+        setAle(ale);
+        setStouts(stouts)
+        
+      });
+  }, []);
+
   return (
-        <View>
-          <FlatList
-            data={searchAlphabetically}
-            renderItem={({ item }) => <Result item={item} />}
-          />
-        </View>
+    <View>
+      <FlatList
+        data={searchAlphabetically}
+        renderItem={({ item }) => <Result item={item} />}
+      />
+    </View>
   );
 }

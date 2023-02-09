@@ -3,7 +3,9 @@ import React from "react";
 import { Center, VStack, Box, Flex, Divider } from "native-base";
 
 export default function Result({ item }) {
-  const { image_url } = item;
+
+  const { image_url: image } = item;
+
   return (
     <View>
       <Flex
@@ -18,7 +20,7 @@ export default function Result({ item }) {
         </View>
         <View style={{ width: "25%" }}>
           <Image
-            source={{ uri: image_url }}
+            source={{ uri: image }}
             style={{ height: 200, width: "100%", resizeMode: "contain" }}
             alt="Beer picture"
           />
