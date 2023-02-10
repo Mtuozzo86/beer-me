@@ -8,14 +8,15 @@ export default function SearchResults({ route }) {
   const [punkApi, setPunkApi] = useState([]);
   const [stouts, setStouts] = useState([]);
   const [ale, setAle] = useState([]);
-  console.log('ales:', ale.length)
-  console.log('stouts:', stouts.length)
-  console.log('punk api:', punkApi.length)
-  console.log('altogether:',allResults.length)
+  console.log("ales:", ale.length);
+  console.log("stouts:", stouts.length);
+  console.log("punk api:", punkApi.length);
+  console.log("altogether:", allResults.length);
   const { input } = route.params;
+  console.log(input);
 
   // CURRENTLY HANDLING FROM PUNK API
-  const searchAlphabetically = punkApi.sort(function (a, b) {
+  const searchAlphabetically = allResults.sort(function (a, b) {
     if (a.name < b.name) {
       return -1;
     }
@@ -25,15 +26,15 @@ export default function SearchResults({ route }) {
     return 0;
   });
 
-  // useEffect(() => {
-  //   fetch(`https://api.punkapi.com/v2/beers?beer_name=${input}`)
-  //     .then((r) => r.json())
-  //     .then((data) => setPunkApi(data));
-  // }, [input]);
+  const searched = searchAlphabetically.filter((beer) =>
+    beer.name.toLowerCase().includes(input.toLowerCase())
+  );
+  console.log("searched beer from all results:", searched);
+
 
   useEffect(() => {
     Promise.all([
-      fetch(`https://api.punkapi.com/v2/beers?beer_name=${input}`),
+      fetch(`https://api.punkapi.com/v2/beers`),
       fetch("https://api.sampleapis.com/beers/ale"),
       fetch("https://api.sampleapis.com/beers/stouts"),
     ])
@@ -41,18 +42,19 @@ export default function SearchResults({ route }) {
         Promise.all([punkApi.json(), ale.json(), stouts.json()])
       )
       .then(([punkApi, ale, stouts]) => {
-        setPunkApi(punkApi);
-        setAle(ale);
-        setStouts(stouts);
-        setAllResults([punkApi,ale,stouts])
+        // setPunkApi(punkApi);
+        // setAle(ale);
+        // setStouts(stouts);
+        setAllResults([...punkApi, ...ale, ...stouts]);
       });
   }, [input]);
 
   return (
     <View>
       <FlatList
-        data={searchAlphabetically}
+        data={searched}
         renderItem={({ item }) => <Result item={item} />}
+        keyExtractor={item => item.id = Math.floor(Math.random() * 500)}
       />
     </View>
   );
