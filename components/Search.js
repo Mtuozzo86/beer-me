@@ -16,7 +16,7 @@ import { useNavigation } from '@react-navigation/native';
 import React, { useState } from "react";
 import FilterOptions from "./FilterOptions";
 
-export default function Search({ onCloseSearch, showSearch}) {
+export default function Search({ onCloseSearch, showSearch, onSearch}) {
   const navigation = useNavigation()
   const [input, setInput] = useState("");
   const [showFilterOptions, setShowFilterOptions] = useState(false);
@@ -25,6 +25,7 @@ export default function Search({ onCloseSearch, showSearch}) {
     navigation.navigate("Search Results", {input: input}),
     setInput('')
     onCloseSearch(false)
+    onSearch(input)
   }
 
   return (

@@ -4,7 +4,6 @@ import { Center, VStack, Box, Flex, Divider } from "native-base";
 
 export default function Result({ item }) {
   const img = item.image || item.image_url
-  console.log(img)
   return (
     <View>
       <Flex

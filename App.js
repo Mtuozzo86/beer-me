@@ -1,6 +1,5 @@
-import React from "react";
 import { NativeBaseProvider } from "native-base";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { NavigationContainer, StackActions } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { navigationRef } from "./RootNavigation";
@@ -19,6 +18,32 @@ export default function App() {
   const [showSearch, setShowSearch] = useState(false);
   const [user, setUser] = useState("");
   const [favorites, setFavorites] = useState([]);
+  const [allDrinks, setAllDrinks] = useState([]);
+
+  //Call the APIs and combine them on app load
+  useEffect(() => {
+    Promise.all([
+      fetch("https://api.punkapi.com/v2/beers"),
+      fetch("https://api.sampleapis.com/beers/ale"),
+      fetch("https://api.sampleapis.com/beers/stouts"),
+    ])
+      .then(([punkApi, ale, stouts]) =>
+        Promise.all([punkApi.json(), ale.json(), stouts.json()])
+      )
+      .then(([punkApi, ale, stouts]) => {
+        const collected = [...punkApi, ...ale, ...stouts];
+        //Make new ID's for data being pulled in since we are pulling from 3 separate APIs
+        let newId = 1;
+        setAllDrinks(
+          collected.map((beer) => {
+            return {
+              ...beer,
+              id: newId++,
+            };
+          })
+        );
+      });
+  }, []);
 
   function handleFavoriteBeer(clicked) {
     setFavorites(
@@ -59,7 +84,11 @@ export default function App() {
           <Stack.Screen name="Favorites">
             {(props) => <ListOfFavorites {...props} beer={favorites} />}
           </Stack.Screen>
-          <Stack.Screen name="Search Results" component={SearchResults} />
+          <Stack.Screen
+            name="Search Results"
+            component={SearchResults}
+            initialParams={{ allDrinks }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </NativeBaseProvider>
